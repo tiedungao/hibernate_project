@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hibernate.entity">
+
+    <class name="com.hibernate.entity.Grade" table="grade" >
+        <cache usage="read-only" />
+        <id name="gid" column="gid" type="java.lang.Integer">
+            <generator class="increment"/>
+        </id>
+        <property name="gname" column="gname" type="string"></property>
+        <property name="remakes" column="remakes" type="string"></property>
+
+        <set name="studentSet" cascade="save-update" inverse="true" >
+            <key column="gid"  />
+            <one-to-many class="com.hibernate.entity.Student"/>
+        </set>
+    </class>
+</hibernate-mapping>
